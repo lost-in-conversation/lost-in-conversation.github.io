@@ -1,0 +1,410 @@
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    margin: 0;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    width: 200px;
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+    background-color: #ecedf3; /* Slightly off-white like the screenshot */
+    /* border-right: 1px solid #dee2e6; */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Allows scrolling if content exceeds height */
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 20px; /* Width when collapsed */
+}
+
+.sidebar.collapsed .sidebar-content {
+    display: none;
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 5px;
+    align-self: flex-start; /* Aligns to the left if sidebar content is centered */
+    margin-bottom: 10px;
+}
+
+.sidebar h4 {
+    font-size: 0.9em;
+    color: #6c757d; /* Greyish text */
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.sidebar .separator {
+    border: 0;
+    border-top: 1px solid #e0e0e0; /* Lighter separator */
+    margin: 2px 0; /* Reduced margin like in the screenshot */
+}
+
+.sidebar-section {
+    margin-bottom: 20px;
+}
+
+.sidebar-section label,
+.sidebar-section .radio-group label {
+    display: block;
+    font-size: 0.85em;
+    font-weight: 500; /* Slightly bolder labels */
+    margin-bottom: 8px;
+    color: #495057;
+}
+
+.sidebar-section .radio-group div {
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-section .radio-group div label {
+    display: inline;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.sidebar-section .radio-group input[type="radio"] {
+    margin-right: 8px;
+}
+
+.sidebar-section select,
+.sidebar-section .text-input {
+    width: 100%;
+    padding: 10px; /* Slightly increased padding */
+    border: 1px solid #ccc; /* Slightly softer border */
+    border-radius: 6px; /* Slightly more rounded */
+    font-size: 0.9em; /* Slightly larger font */
+    box-sizing: border-box;
+    margin-top: 4px; /* Increased margin-top */
+    background-color: #fff; /* Explicit white background */
+    color: #333; /* Darker text color for better contrast */
+    cursor: pointer;
+
+    /* Remove default system appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Custom dropdown arrow using a pseudo-element */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236c757d%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+    padding-right: 30px; /* Make space for the arrow */
+}
+
+.sidebar-section select:hover {
+    border-color: #aaa;
+}
+
+.sidebar-section select:focus {
+    outline: none;
+    border-color: #ffa200; /* Theme color for focus */
+    box-shadow: 0 0 0 2px rgba(255, 162, 0, 0.2); /* Subtle glow */
+}
+
+/* Style for text input remains largely the same, just ensuring consistency if needed */
+.sidebar-section .text-input {
+    cursor: text;
+    background-image: none; /* Ensure text inputs don't get the arrow */
+    padding-right: 10px; /* Reset padding-right for text input */
+}
+
+.sidebar-section input[type="checkbox"] {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.sidebar-section div > label {
+    display: inline;
+    font-weight: normal;
+}
+
+.sidebar-section.stats-info h4 {
+    font-size: 1em;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.sidebar-section.stats-info p {
+    font-size: 0.8em;
+    color: #495057;
+    margin: 5px 0;
+}
+
+.chat-view {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff; /* Light grey background for chat area, similar to messaging apps */
+    overflow-y: auto;
+    height: calc(100vh - 40px); /* Adjust based on padding */
+}
+
+.chat-header h2 {
+    font-size: 1.5em;
+    color: #343a40;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.code-turn {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.code-box {
+    display: none;
+}
+
+.code-box .icon {
+    display: none;
+}
+
+.assistant-icon {
+    background-color: #ffc107; /* Orange/Yellow as in screenshot */
+}
+
+.user-icon {
+    background-color: #6c757d; /* Grey as in screenshot */
+}
+
+.code-box pre {
+    margin: 0;
+    padding: 10px 15px;
+    background-color: #fdfdfd; /* Slightly different shade for the code itself */
+    border-radius: 0 0 5px 5px; /* If header has different bg */
+    overflow-x: auto; /* For horizontal scroll if code is wide */
+    line-height: 1.2;
+}
+
+.code-box code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background: none;
+    color: #212529;
+}
+
+.timestamp {
+    font-size: 0.9em;
+    color: #6c757d;
+    padding-bottom: 4px;
+    text-align: right;
+}
+
+.evaluation-status {
+    font-size: 1em;
+    color: #495057;
+}
+
+.evaluation-status .correct {
+    color: #28a745; /* Green for correct */
+    font-weight: bold;
+}
+
+.evaluation-status .incorrect {
+    color: #dc3545; /* Red for incorrect */
+    font-weight: bold;
+}
+
+/* Scrollbar styling (optional, for a more polished look) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* New message styling */
+.message {
+    padding: 10px 15px;
+    border-radius: 12px; /* More rounded bubbles */
+    margin-top: 5px;
+    margin-bottom: 5px; /* Space between bubbles */
+    word-wrap: break-word; /* Ensure long words break and wrap */
+    overflow-wrap: break-word; /* Standard property for word breaking */
+    white-space: pre-wrap; /* Respect newlines and wrap text */
+    position: relative; /* For potential future use with pseudo-elements if needed */
+    line-height: 1.2; /* Reduced line height */
+}
+
+.message-wrapper-assistant {
+    align-self: flex-end;
+    width: 80%;
+}
+.message-wrapper-user {
+    align-self: flex-start;
+    width: 80%;
+}
+
+.message-assistant {
+    background-color: #f8f8f8; /* Was #dcf8c6 */
+    /* border: 1px solid #e0e0e0; Added border */
+    align-self: flex-end; /* Assistant on the right */
+    text-align: left; /* Text within bubble aligns left */
+}
+
+.message-user {
+    background-color: #eef9e5; /* Was #fff, now green */
+    /* border: 1px solid #e0e0e0; Removed border, green bubble usually doesn't have it */
+    align-self: flex-start; /* User on the left */
+    text-align: left; /* Text within bubble aligns left */
+}
+
+.message-system {
+    background-color: #f0f0f0; /* Neutral grey for system messages */
+    color: #505050;
+    font-style: italic;
+    font-size: 0.9em;
+    max-width: 90%; /* System messages can be a bit wider */
+    align-self: flex-end; /* Changed from center to flex-end */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.message-system h4 {
+    font-size: 1em;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.message-system ul {
+    padding-left: 20px;
+    margin-bottom: 10px;
+    list-style: disc;
+}
+
+.message-system ul li {
+    margin-bottom: 5px;
+}
+
+.message-content {
+    /* Any specific styling for content area if needed */
+}
+
+/* Reduce margins for p, ul, li within message content */
+.message-content p {
+    margin-top: 0.0em;
+    margin-bottom: 0.0em;
+}
+
+.message-content ul {
+    margin-top: 0.0em;
+    margin-bottom: 0.0em;
+    padding-left: 20px; /* Keep standard bullet indentation */
+}
+
+.message-content ol {
+    margin-top: 0.0em;
+    margin-bottom: 0.0em;
+    padding-left: 20px; /* Keep standard bullet indentation */
+}
+
+.message-content li {
+    margin-bottom: 0.0em;
+}
+
+.message-content h1 {
+    margin-top: 0.0em;
+    margin-bottom: 0.0em;
+}
+
+.message-content h2 {
+    margin-top: 0.0em;
+    margin-bottom: 0.0em;
+}
+
+.message-content h3 {
+    margin-top: 0.0em;
+    margin-bottom: 0.0em;
+}
+
+.message-content h4 {
+    margin-top: 0.0em;
+    margin-bottom: 0.0em;
+}
+
+.message-role-label {
+    font-size: 1em;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 3px;
+    display: block; /* Ensure it takes its own line */
+}
+.message-role-label.user {
+    text-align: left;
+}
+.message-role-label.assistant {
+    text-align: left;
+}
+
+.message pre {
+    margin: 8px 0 0 0;
+    padding: 8px;
+    background-color: rgba(0,0,0,0.04);
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.message code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background: none;
+    color: #212529;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.message-header {
+    display: none;
+}
+
+.turn-metadata {
+    font-size: 1em;
+    color: #6c757d;
+    margin-top: 3px;
+    padding: 0 8px; /* Add some padding to align with bubble edges */
+}
+
+/* Align metadata based on the message it's associated with */
+.message-user + .turn-metadata {
+    align-self: flex-start; /* Metadata for user (left) */
+    text-align: left;
+}
+
+.message-assistant + .turn-metadata,
+.message-system + .turn-metadata {
+    align-self: flex-end; /* Metadata for assistant (right) & system (right) */
+    text-align: right;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation Simulator Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <button class="sidebar-toggle">&lt;</button>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <label>Task</label>
+                    <hr class="separator">
+                    <select id="task" name="task">
+                        <option value="actions">Actions</option>
+                        <option value="database">Database</option>
+                        <option value="math" selected>Math</option>
+                        <option value="code">Code</option>
+                    </select>
+                </div>
+
+                <div class="sidebar-section">
+                    <label>Conversation Type</label>
+                    <hr class="separator">
+                    <select id="conversation-type" name="conversation-type">
+                        <option value="concat">Concat</option>
+                        <option value="full" selected>Full</option>
+                        <option value="sharded">Sharded</option>
+                    </select>
+                </div>
+
+                <div class="sidebar-section">
+                    <label for="assistant-model">Assistant Model</label>
+                    <hr class="separator">
+                    <select id="assistant-model" name="assistant-model">
+                        <option value="claude3-haiku">Claude3-haiku</option>
+                        <option value="claude3.7-sonnet">Claude3.7-sonnet</option>
+                        <option value="command-a">Command-a</option>
+                        <option value="deepseek-r1">Deepseek-R1</option>
+                        <option value="gemini-2.5-flash">Gemini-2.5-Flash</option>
+                        <option value="gemini-2.5-pro">Gemini-2.5-Pro</option>
+                        <option value="gpt-4.1" selected>GPT-4.1</option>
+                        <option value="gpt-4o">GPT-4o</option>
+                        <option value="gpt-4o-mini">GPT-4o-Mini</option>
+                        <option value="llama3.1-8b-inst">Llama3.1-8B-Inst</option>
+                        <option value="llama3.3-70b-inst">Llama3.3-70B-Inst</option>
+                        <option value="llama4-scout">Llama4-Scout</option>
+                        <option value="o3">o3</option>
+                        <option value="olmo2-13b">Olmo2-13B</option>
+                        <option value="phi-4">Phi-4</option>
+                    </select>
+                </div>
+
+                <div class="sidebar-section">
+                    <label for="task-id">Task ID</label>
+                    <hr class="separator">
+                    <select id="task-id" name="task-id">
+                        <option value="Lazy-HumanEval/105">Lazy-HumanEval/105</option>
+                    </select>
+                </div>
+
+                <div class="sidebar-section">
+                    <label for="conversation-id-select">Conversation ID</label>
+                    <hr class="separator">
+                    <select id="conversation-id-select" name="conversation-id-select">
+                        <option value="6809616178abf777e8e66a8d">6809616178abf777e8e66a...</option>
+                    </select>
+                </div>
+            </div>
+        </aside>
+
+        <main class="chat-view">
+            <header class="chat-header">
+                <h2>Conversation Simulator Viewer</h2>
+                <!-- <h3><span id="display-convo-id">6809616178abf777e8e66a8d</span></h3> -->
+            </header>
+
+            <div id="conversation-content"></div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
