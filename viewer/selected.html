@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Conversations Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <button class="sidebar-toggle">&lt;</button>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <label for="task-select">Task</label>
+                    <hr class="separator">
+                    <select id="task-select" name="task-select">
+                        <option value="all">All Tasks</option>
+                    </select>
+                </div>
+                
+                <div class="sidebar-section">
+                    <label for="conv-type-select">Conversation Type</label>
+                    <hr class="separator">
+                    <select id="conv-type-select" name="conv-type-select">
+                        <option value="all">All Types</option>
+                    </select>
+                </div>
+                
+                <div class="sidebar-section">
+                    <label for="conversation-select">Conversations</label>
+                    <hr class="separator">
+                    <select id="conversation-select" name="conversation-select">
+                        <option value="">Loading...</option>
+                    </select>
+                </div>
+            </div>
+        </aside>
+
+        <main class="chat-view">
+            <header class="chat-header">
+                <h2>Selected Conversations Viewer</h2>
+            </header>
+
+            <div id="conversation-content"></div>
+        </main>
+    </div>
+    <script src="selected.js"></script>
+</body>
+</html> 
